@@ -1,5 +1,7 @@
 import Head from 'next/head';
-import { people } from '../Data/people';
+import { Sidebar } from '../components/Sidebar';
+
+import styles from '../styles/index.module.css';
 
 const Home = () => {
   return (
@@ -11,17 +13,13 @@ const Home = () => {
       </Head>
 
       <main>
-        <div>
-          <nav>
-            {people.map((person) => (
-              <ul key={person.id}>
-                <li>{person.name}</li>
-              </ul>
-            ))}
-          </nav>
-        </div>
+        <Sidebar />
 
-        <h1>Cause Effect</h1>
+        <div className={styles.content}>
+          <h1>Cause Effect</h1>
+
+          <p>Nome:</p>
+        </div>
       </main>
     </div>
   );
