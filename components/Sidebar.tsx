@@ -1,16 +1,14 @@
-import { MouseEvent, useState } from 'react';
+import { MouseEvent } from 'react';
 import { people } from '../Data/people';
 
 import styles from './Sidebar.module.css';
 
-export const Sidebar = () => {
-  const [selected, setSelected] = useState(1);
+interface SidebarProps {
+  selected: number;
+  selectedHandleClick: (id: number, event: MouseEvent) => void;
+}
 
-  const handleClick = (id: number, event: MouseEvent): void => {
-    event.preventDefault();
-    setSelected(id);
-  };
-
+export const Sidebar = ({ selected, selectedHandleClick }: SidebarProps) => {
   return (
     <div className={styles.sidebar}>
       {people.map((person, index) => {
@@ -18,7 +16,7 @@ export const Sidebar = () => {
           <a
             href={` ${person.name}`}
             key={index}
-            onClick={(event) => handleClick(person.id, event)}
+            onClick={(event) => selectedHandleClick(person.id, event)}
             className={selected === person.id ? styles.active : ''}
           >
             {person.name}
